@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     lazy var collectionViewLayout = collectionViewLayoutInit()
     lazy var collectionView = collectionViewInit()
     lazy var dataSource = dataSourceInit()
+    var shouldPerformsEmptyBatchUpdates = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,14 @@ class ViewController: UIViewController {
         ])
         
         addMockData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if shouldPerformsEmptyBatchUpdates {
+            dataSource.apply(dataSource.snapshot(), animatingDifferences: true)
+            shouldPerformsEmptyBatchUpdates = false
+        }
     }
 }
 
@@ -63,6 +72,7 @@ extension ViewController {
     func dataSourceInit() -> UICollectionViewDiffableDataSource<String, FaceoutItem> {
         let cellRegistration = UICollectionView.CellRegistration<FaceoutCollectionViewCell, FaceoutItem> { cell, indexPath, itemIdentifier in
             cell.delegate = self
+            cell.coordinator = self
             Task {
                 try? await Task.sleep(nanoseconds:1_500_000_000)
                 cell.item = itemIdentifier
@@ -78,7 +88,6 @@ extension ViewController {
 // MARK: UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -153,20 +162,26 @@ extension ViewController {
         ]
         snapshot.appendSections(["main"])
         snapshot.appendItems(items, toSection: "main")
-        dataSource.apply(snapshot, animatingDifferences: true) {
-//            if let visibleCells = self.collectionView.visibleCells as? [FaceoutCollectionViewCell] {
-//                for cell in visibleCells {
-//
-//                }
-//            }
-        }
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 
 extension ViewController: FaceoutCollectionViewCellDelegate {
     func faceoutCollectionViewCellDidFinishDisplayingContent(_ cell: FaceoutCollectionViewCell) {
-        print("finished displaying content for cell \(cell)")
-        //collectionView.collectionViewLayout.invalidateLayout()
-        collectionView.setNeedsLayout()
+        shouldPerformsEmptyBatchUpdates = true
+        view.setNeedsLayout()
+    }
+}
+
+extension ViewController: CollectionViewLayoutAttributesCoordinator {
+    func preferredLayoutAttributes(for cell: UICollectionViewCell, fitting layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        if let indexPath = collectionView.indexPath(for: cell) {
+            let neighbor = IndexPath(item: indexPath.item % 2 == 0 ? indexPath.item + 1 : indexPath.item - 1, section: indexPath.section)
+            if let neighhborAttributes = collectionView.layoutAttributesForItem(at: neighbor) {
+                let maxHeight = max(layoutAttributes.size.height, neighhborAttributes.size.height)
+                layoutAttributes.frame.size.height = maxHeight
+            }
+        }
+        return layoutAttributes
     }
 }

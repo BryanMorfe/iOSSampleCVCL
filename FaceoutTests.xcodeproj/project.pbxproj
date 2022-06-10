@@ -16,6 +16,7 @@
 		053FB8E82826B23600A95B7E /* FaceoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053FB8E72826B23600A95B7E /* FaceoutItem.swift */; };
 		053FB8EA2826B58D00A95B7E /* FaceoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053FB8E92826B58D00A95B7E /* FaceoutCollectionViewCell.swift */; };
 		053FB8EC2826B6DB00A95B7E /* FaceoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053FB8EB2826B6DB00A95B7E /* FaceoutView.swift */; };
+		05E4D2F22852C78900C50D1E /* CollectionViewLayoutAttributesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E4D2F12852C78800C50D1E /* CollectionViewLayoutAttributesCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		053FB8E72826B23600A95B7E /* FaceoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceoutItem.swift; sourceTree = "<group>"; };
 		053FB8E92826B58D00A95B7E /* FaceoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		053FB8EB2826B6DB00A95B7E /* FaceoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceoutView.swift; sourceTree = "<group>"; };
+		05E4D2F12852C78800C50D1E /* CollectionViewLayoutAttributesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutAttributesCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				053FB8DE2826B08900A95B7E /* LaunchScreen.storyboard */,
 				053FB8E12826B08A00A95B7E /* Info.plist */,
 				053FB8E72826B23600A95B7E /* FaceoutItem.swift */,
+				05E4D2F12852C78800C50D1E /* CollectionViewLayoutAttributesCoordinator.swift */,
 			);
 			path = FaceoutTests;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				053FB8EC2826B6DB00A95B7E /* FaceoutView.swift in Sources */,
 				053FB8EA2826B58D00A95B7E /* FaceoutCollectionViewCell.swift in Sources */,
 				053FB8E82826B23600A95B7E /* FaceoutItem.swift in Sources */,
+				05E4D2F22852C78900C50D1E /* CollectionViewLayoutAttributesCoordinator.swift in Sources */,
 				053FB8D62826B08800A95B7E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EEYTF96KY;
@@ -314,6 +319,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evoluti.FaceoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2EEYTF96KY;
@@ -342,6 +349,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evoluti.FaceoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

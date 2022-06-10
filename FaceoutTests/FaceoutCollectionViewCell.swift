@@ -24,6 +24,8 @@ class FaceoutCollectionViewCell: UICollectionViewCell {
     private lazy var faceoutView = faceoutViewInit()
     private lazy var bottomButton = button()
     
+    public var coordinator: CollectionViewLayoutAttributesCoordinator?
+    
     convenience init() {
         self.init(frame: .zero)
     }
@@ -59,10 +61,13 @@ class FaceoutCollectionViewCell: UICollectionViewCell {
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let targetSize = CGSize(width: layoutAttributes.frame.size.width, height: 0)
-        let modifiedAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        modifiedAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-        return modifiedAttributes
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        
+        if let coordinator = coordinator {
+            return coordinator.preferredLayoutAttributes(for: self, fitting: attributes)
+        }
+        
+        return attributes
     }
 }
 
